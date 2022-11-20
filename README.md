@@ -2,7 +2,9 @@
 
 
 ### Ex. No. :7
-## Date: 
+## Date: 20/11/22
+### Name: SRIJITH R
+### Reg. No.: 212221240054
 ### Interfacing LM35 Temperature sensor and calculate the sensitivity of the output
 
 ## Aim: 
@@ -192,35 +194,50 @@ Low-Impedance Output, 0.1 Ω for 1-mA Load
 Figure -08 Circuit diagram of interfacing an LM35  with ADC input pin 
 
 ## Kiel - Program 
- 
+```
+#include<lpc214x.h>
+#include "LCD.h"
+#include "ADC.h"
+int main()
+{
+	IO1DIR=0xffffffff;
+	IO0DIR=0x00000000;
+	PINSEL0=0x0300;
+	VPBDIV=0x02;
+	lcd_init();
+	show(" ADC Value: ");
+	while(1){
+		cmd(0x8b);
+		val=adc(0,6);
+		dat((val/1000)+48);
+		dat(((val/100)%10)+48);
+		dat(((val/10)%10)+48);
+		dat((val%10)+48);
+	}
+}
+```
+## Output screen shots :
+
+
+
+
+## Display off:
+![disoff](https://user-images.githubusercontent.com/94164580/202905781-9c0e2ce5-362e-4fc2-af72-4ba49485eae8.png)
+## Display on:
+![dison](https://user-images.githubusercontent.com/94164580/202905782-7a536d83-5fbb-4825-bdde-ca90cb8ff496.png)
+## Layout:
+![lay](https://user-images.githubusercontent.com/94164580/202905778-bc6f525d-1356-4dd6-bc66-b965506c9f6b.png)
 ## Tabulations and graph 
 Calculation of sensitivity 
 % of sensitivity is   S=  (T2-T1)/(A2-A1)*100
-
-
-
-
-SL NO	Temperature value in °C (T)	ADC VALUE (A)	Sensitivity 
-1			-
-2			
-3			
-4			
-5			
-6			
-7			
-8			
-9			
-10			
-
-
- 
+![tab](https://user-images.githubusercontent.com/94164580/202905780-deb75014-d858-487d-acd4-5ce546f39b58.png)
+![graph](https://user-images.githubusercontent.com/94164580/202905775-6a3a104a-bf81-4e7f-9a14-980c8e6eb5c0.png)
 Figure -09 graph between temperature values and ADC output 
 
 
 ## Result :
 Temperature sensor LM35 is interfaced to LPC2148 and its output is measured 
 
-## Output screen shots :
 
 
 
